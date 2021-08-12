@@ -14,12 +14,18 @@ import re
 #url_list = pd.read_csv("/Users/m./Google Drive/DataProject_thandi/history.csv")
 #url_list = url_list["url"]
 
-infile = open("HEADINGSLIST.xml","r")
-contents = infile.read()
-url_list_raw  = str(BeautifulSoup(contents,'xml'))
-url_list = re.findall(r'HREF="(.*?)" ADD_DATE', url_list_raw)
+#infile = open("URL LIST archi.xml","r")
+#ontents = infile.read()
+#url_list_raw  = str(BeautifulSoup(contents,'html'))
+x= ""
+url_list = pd.read_csv("URL LIST archi.csv")
 
-print(url_list)
+
+for i in url_list["LIST"]:
+    
+    x = x + " " + i
+
+url_list = re.findall(r'HREF="(.*?)" ADD_DATE', x)
 
 print(len(url_list))
 
@@ -28,7 +34,7 @@ siteCounter = 0
 
 #google syntax for "+"
 plus = "+%2B+"
-search_string = "data"
+search_string = "gallery" + plus + "house" +  plus + " Forbidden" + plus + "reliable" + plus + "stream" + plus +  "refine" + plus + "office" + plus + "found" + plus + "damage" + plus + "repair" 
 
 if (os.path.isfile(search_string+"HREF_log.csv")):
     HREF_log = pd.read_csv(search_string+"HREF_log.csv")
